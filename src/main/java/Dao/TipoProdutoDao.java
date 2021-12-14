@@ -72,7 +72,7 @@ public class TipoProdutoDao {
             while (resultSet.next()) {
                 TipoProduto tp = new TipoProduto();
                 tp.setTipoProduto(resultSet.getString("nome"));
-                tp.setIdDoProduto(resultSet.getInt("idDoProduto"));
+                tp.setIdDoProduto(resultSet.getInt("idTipoDoProduto"));
                 TipoList.add(tp);
             }
 
@@ -85,7 +85,7 @@ public class TipoProdutoDao {
 
     public TipoProduto SelecionaTipoId (int id){
 
-        String sql = "SELECT * FROM TIPOprodCadastrados WHERE idDoProduto = ?";
+        String sql = "SELECT * FROM TIPOprodCadastrados WHERE idTipoDoProduto = ?";
 
         try {
 
@@ -96,7 +96,7 @@ public class TipoProdutoDao {
 
             while (resultSet.next()){
                 TipoProduto tipoProduto = new TipoProduto();
-                tipoProduto.setIdDoProduto(resultSet.getInt("idDoProduto"));
+                tipoProduto.setIdDoProduto(resultSet.getInt("idTipoDoProduto"));
                 tipoProduto.setTipoProduto(resultSet.getString("nome"));
 
                 return tipoProduto;
@@ -124,5 +124,7 @@ public class TipoProdutoDao {
         }
 
     }
+
+
 
 }

@@ -1,8 +1,10 @@
 package Controller;
 
+import Dao.ProdutoDao;
 import Dao.TipoProdutoDao;
 import Model.Produto;
 import Model.TipoProduto;
+import View.ProdutoView;
 
 import java.util.List;
 
@@ -28,6 +30,11 @@ public class TipoProdutoController {
     public TipoProduto seleionaById(int id){
         TipoProdutoDao TPproduto = new TipoProdutoDao();
         return TPproduto.SelecionaTipoId(id);
+    }
+
+    public List<Produto> seleionaByIdDobanco(int id){
+        ProdutoDao pd = new ProdutoDao();
+        return pd.SelecionaTipoIdDobanco(id);
     }
 
 

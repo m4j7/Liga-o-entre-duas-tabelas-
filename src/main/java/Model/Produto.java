@@ -30,8 +30,10 @@ public class Produto {
         this.tipoProduto = tipoProduto;
     }
 
-    public Produto(String nome) {
+
+    public Produto(String nome, TipoProduto tipoProduto) {
         this.nome = nome;
+        this.tipoProduto = tipoProduto;
     }
 
     public Produto() {

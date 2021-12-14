@@ -1,7 +1,9 @@
 package View;
 
 import Controller.ProdutosController;
+import Controller.TipoProdutoController;
 import Model.Produto;
+import Model.TipoProduto;
 
 import java.util.List;
 import java.util.Locale;
@@ -10,7 +12,7 @@ import java.util.Scanner;
 public class ProdutoView {
 
   Scanner leitor = new Scanner(System.in).useDelimiter("\n").useLocale(Locale.US);
-
+  TipoProdutoView tp = new TipoProdutoView();
 
   public void criaTabela() {
 
@@ -21,10 +23,13 @@ public class ProdutoView {
 
   public void cadastraProduto() {
 
+
+    TipoProduto tipo = tp.retornaId();
+
     System.out.println("Digite o nome do produto");
     String nome = leitor.next();
 
-    Produto produto = new Produto(nome);
+    Produto produto = new Produto(nome, tipo);
 
     ProdutosController produtoController = new ProdutosController();
     ProdutosController.cadastraProduto(produto);
@@ -50,7 +55,6 @@ public class ProdutoView {
     System.out.println("Qual o id você quer selecionar:");
 
     prod = pc.seleionaById(entrada.nextInt());
-
 
     System.out.println("O produto selecionado foi:");
     System.out.println(prod);

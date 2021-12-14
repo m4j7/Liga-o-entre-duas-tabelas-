@@ -2,9 +2,12 @@ package View;
 
 import Controller.ProdutosController;
 import Controller.TipoProdutoController;
+import Dao.TipoProdutoDao;
 import Model.Produto;
 import Model.TipoProduto;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -57,6 +60,24 @@ public class TipoProdutoView {
         System.out.println(tipoProduto);
 
         return tipoProduto;
+    }
+
+    public List<Produto> retornaIdBanco() {
+
+        Scanner entrada = new Scanner(System.in).useDelimiter("\n");
+        List<Produto> list = new ArrayList<>();
+        TipoProduto tipoProduto = new TipoProduto();
+
+        TipoProdutoController pc = new TipoProdutoController();
+
+        System.out.println("Qual o categoria você deseja visualizar:");
+        list = pc.seleionaByIdDobanco(entrada.nextInt());
+
+        System.out.println("A categoria selecionada foi:");
+
+        System.out.println(list);
+
+        return list;
     }
 
 

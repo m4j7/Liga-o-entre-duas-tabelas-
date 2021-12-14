@@ -41,14 +41,14 @@ public class ProdutoDao {
     public void gravaNoBanco(Produto produto){
 
         String sql = "INSERT INTO produtosCadastrados" +
-                " (nome, idTipoProdutoFK) " +
+                " (nome,idTipoDoProdutoFK ) " +
                 "VALUES (?,?)";
 
         try {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, produto.getNome());
-            stmt.setString(2, produto.getTipoProduto().getTipoProduto());
+            stmt.setInt(2, produto.getTipoProduto().getIdDoProduto());
 
             stmt.execute();
 
@@ -124,6 +124,39 @@ public class ProdutoDao {
         }
 
         return null;
+    }
+
+    public List<Produto> SelecionaTipoIdDobanco (int id){
+
+        String sql = "SELECT * FROM produtosCadastrados WHERE idTipoDoProdutoFK = ?";
+
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            List<Produto> list = new ArrayList<>();
+
+            while (resultSet.next()){
+                Produto produto = new Produto();
+                produto.setIdDoProduto(resultSet.getInt("idDoProduto"));
+                produto.setNome(resultSet.getString("nome"));
+
+                //TipoProdutoDao tpDAO = new TipoProdutoDao();
+               // TipoProduto tipoProduto = new TipoProduto();
+                //tipoProduto  = tpDAO.SelecionaTipoId(resultSet.getInt("idTipoProdutoFK"));
+                //produto.setTipoProduto(tipoProduto);
+
+                list.add(produto);
+            }
+
+            return list;
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
     }
 
     public Produto SelecionaProdutoId(int id){

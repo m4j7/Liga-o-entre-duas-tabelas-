@@ -18,15 +18,15 @@ public class MenuView {
            System.out.println("  1 - Cadastrar Produto ");
            System.out.println("  2 - Mostrar Produtos  ");
            System.out.println("  3 - Editar Produto    ");
-           System.out.println("  4 - Deletar Produto   ");
-           System.out.println("  1 - Cadastrar Tipo Produto ");
-           System.out.println("  2 - Mostrar Tipo Produtos  ");
-           System.out.println("  4 - Deletar Tipo Produto   ");
-
+           System.out.println("  5 - Deletar Produto   ");
+           System.out.println("  6 - Cadastrar Tipo Produto ");
+           System.out.println("  7 - Mostrar Tipo Produtos  ");
+           System.out.println("  8 - Deletar Tipo Produto   ");
 
            switch (leitor.nextInt()) {
                case 1:
                    pv.criaTabela();
+                   tp.mostraListaTipo();
                    pv.cadastraProduto();
                    this.Menu();
                    break;
@@ -58,7 +58,10 @@ public class MenuView {
                    tp.deletarTipoProduto(tp.retornaId());
                    this.Menu();
                    break;
-
+               case 8:
+                   tp.mostraListaTipo();
+                   tp.retornaIdBanco();
+                   this.Menu();
                default:
                    System.out.println("Opção invalida");
            }
